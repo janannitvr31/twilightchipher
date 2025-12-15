@@ -1,0 +1,210 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Site Safety Checker Design System */
+
+@layer base {
+  :root {
+    /* Core colors - Teal theme */
+    --background: 180 100% 25%; /* Teal #008080 */
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
+
+    /* Primary - Teal */
+    --primary: 180 100% 25%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Teal theme colors */
+    --teal: 180 100% 25%;
+    --teal-foreground: 0 0% 100%;
+    --teal-light: 180 60% 40%;
+    --teal-dark: 180 100% 20%;
+
+    /* Secondary - Light teal */
+    --secondary: 180 30% 90%;
+    --secondary-foreground: 180 100% 20%;
+
+    --muted: 180 20% 94%;
+    --muted-foreground: 180 15% 40%;
+
+    --accent: 180 50% 90%;
+    --accent-foreground: 180 100% 20%;
+
+    /* Status colors for risk levels */
+    --safe: 142 71% 45%;
+    --safe-foreground: 0 0% 100%;
+    --safe-bg: 142 71% 95%;
+    
+    --likely-safe: 165 60% 45%;
+    --likely-safe-foreground: 0 0% 100%;
+    --likely-safe-bg: 165 60% 95%;
+    
+    --suspicious: 38 92% 50%;
+    --suspicious-foreground: 0 0% 100%;
+    --suspicious-bg: 38 92% 95%;
+    
+    --danger: 0 84% 60%;
+    --danger-foreground: 0 0% 100%;
+    --danger-bg: 0 84% 95%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 180 20% 85%;
+    --input: 180 20% 85%;
+    --ring: 180 100% 25%;
+
+    --radius: 0.75rem;
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 180 100% 25%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 180 30% 95%;
+    --sidebar-accent-foreground: 180 100% 20%;
+    --sidebar-border: 180 20% 85%;
+    --sidebar-ring: 180 100% 35%;
+  }
+
+  .dark {
+    --background: 180 100% 15%;
+    --foreground: 0 0% 98%;
+
+    --card: 180 30% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 180 30% 12%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 180 80% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --teal: 180 100% 25%;
+    --teal-foreground: 0 0% 100%;
+    --teal-light: 180 60% 50%;
+    --teal-dark: 180 100% 15%;
+
+    --secondary: 180 30% 20%;
+    --secondary-foreground: 0 0% 90%;
+
+    --muted: 180 25% 18%;
+    --muted-foreground: 180 15% 60%;
+
+    --accent: 180 40% 20%;
+    --accent-foreground: 180 60% 80%;
+
+    --safe-bg: 142 71% 15%;
+    --likely-safe-bg: 165 60% 15%;
+    --suspicious-bg: 38 92% 15%;
+    --danger-bg: 0 84% 15%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 180 25% 25%;
+    --input: 180 25% 25%;
+    --ring: 180 80% 45%;
+
+    --sidebar-background: 180 30% 10%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 180 80% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 180 30% 18%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 180 25% 20%;
+    --sidebar-ring: 180 80% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+/* Animations */
+@layer utilities {
+  @keyframes score-fill {
+    from {
+      stroke-dashoffset: 283;
+    }
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(0.95);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.3);
+      opacity: 0;
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  .animate-score-fill {
+    animation: score-fill 1s ease-out forwards;
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.4s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out forwards;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-pulse-ring {
+    animation: pulse-ring 1.5s ease-out infinite;
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 25%,
+      hsl(var(--secondary)) 50%,
+      hsl(var(--muted)) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+}
